@@ -1,0 +1,8 @@
+<!ENTITY options.title "Опције окретања језичака">
+<!ENTITY options.scroll_mode "Мењање језичака окретањем">
+<!ENTITY options.scrolls_left.label "Окретањем доле померај лево">
+<!ENTITY options.scrolls_left.accesskey "Л">
+<!ENTITY options.scrolls_right.label "Окретањем доле померај десно">
+<!ENTITY options.scrolls_right.accesskey "Д">
+<!ENTITY options.scroll_wrap.label "Окретањем пребаци на крај траке са језичцима">
+<!ENTITY options.scroll_wrap.accesskey "К">

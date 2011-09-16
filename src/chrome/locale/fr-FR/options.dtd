@@ -1,0 +1,8 @@
+<!ENTITY options.title "Options de Tab Scroll">
+<!ENTITY options.scroll_mode "Type de défilement">
+<!ENTITY options.scrolls_left.label "Le défilement vers le bas ouvre l&apos;onglet de gauche">
+<!ENTITY options.scrolls_left.accesskey "G">
+<!ENTITY options.scrolls_right.label "Le défilement vers le bas ouvre l&apos;onglet de droite">
+<!ENTITY options.scrolls_right.accesskey "D">
+<!ENTITY options.scroll_wrap.label "Le défilement continue en cycle à chaque extrémité de la barre d&apos;onglets">
+<!ENTITY options.scroll_wrap.accesskey "c">

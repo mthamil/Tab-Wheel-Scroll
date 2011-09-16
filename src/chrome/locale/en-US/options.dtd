@@ -1,0 +1,10 @@
+<!ENTITY options.title                   "Tab Scroll Options">
+
+<!ENTITY options.scroll_mode             "Scroll Mode">
+<!ENTITY options.scrolls_left.label      "Scrolling down moves left">
+<!ENTITY options.scrolls_left.accesskey  "L">
+<!ENTITY options.scrolls_right.label     "Scrolling down moves right">
+<!ENTITY options.scrolls_right.accesskey "R">
+
+<!ENTITY options.scroll_wrap.label       "Scroll wraps around the ends of the tab bar">
+<!ENTITY options.scroll_wrap.accesskey   "W">

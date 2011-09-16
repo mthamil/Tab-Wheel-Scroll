@@ -1,0 +1,8 @@
+<!ENTITY options.title "אפשרויות גלילת לשוניות">
+<!ENTITY options.scroll_mode "מצב גלילה">
+<!ENTITY options.scrolls_left.label "גלילת העכבר כלפי מטה מזיזה שמאל">
+<!ENTITY options.scrolls_left.accesskey "ש">
+<!ENTITY options.scrolls_right.label "גלילת העכבר כלפי מטה מזיזה ימינה">
+<!ENTITY options.scrolls_right.accesskey "י">
+<!ENTITY options.scroll_wrap.label "הגלילה גולשת מסביב סיומות סרגל הלשוניות">
+<!ENTITY options.scroll_wrap.accesskey "ג">
