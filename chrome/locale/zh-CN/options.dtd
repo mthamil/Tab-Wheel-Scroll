@@ -1,0 +1,8 @@
+<!ENTITY options.title "标签页滚动选项">
+<!ENTITY options.scroll_mode "滚动模式">
+<!ENTITY options.scrolls_left.label "按下滚轮后向左移">
+<!ENTITY options.scrolls_left.accesskey "L">
+<!ENTITY options.scrolls_right.label "按下滚轮后向右移">
+<!ENTITY options.scrolls_right.accesskey "R">
+<!ENTITY options.scroll_wrap.label "循环选择标签页">
+<!ENTITY options.scroll_wrap.accesskey "W">

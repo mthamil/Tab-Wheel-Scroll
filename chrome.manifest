@@ -1,0 +1,24 @@
+content    tabscroll                                 chrome/content/
+locale     tabscroll     en-US                       chrome/locale/en-US/
+locale     tabscroll     cs-CZ                       chrome/locale/cs-CZ/
+locale     tabscroll     da-DK                       chrome/locale/da-DK/
+locale     tabscroll     de-DE                       chrome/locale/de-DE/
+locale     tabscroll     fa-IR                       chrome/locale/fa-IR/
+locale     tabscroll     fr-FR                       chrome/locale/fr-FR/
+locale     tabscroll     he-IL                       chrome/locale/he-IL/
+locale     tabscroll     ja-JP                       chrome/locale/ja-JP/
+locale     tabscroll     pl-PL                       chrome/locale/pl-PL/
+locale     tabscroll     pt-BR                       chrome/locale/pt-BR/
+locale     tabscroll     ru-RU                       chrome/locale/ru-RU/
+locale     tabscroll     sk-SK                       chrome/locale/sk-SK/
+locale     tabscroll     sr-RS                       chrome/locale/sr-RS/
+locale     tabscroll     tr-TR                       chrome/locale/tr-TR/
+locale     tabscroll     uk-UA                       chrome/locale/uk-UA/
+locale     tabscroll     zh-CN                       chrome/locale/zh-CN/
+locale     tabscroll     zh-TW                       chrome/locale/zh-TW/
+skin       tabscroll     classic/1.0                 chrome/skin/
+
+overlay    chrome://browser/content/browser.xul         chrome://tabscroll/content/tabscroll.xul
+overlay    chrome://navigator/content/navigator.xul     chrome://tabscroll/content/tabscroll.xul
+overlay    windowtype:Songbird:Main                     chrome://tabscroll/content/tabscroll.xul
+overlay	   chrome://messenger/content/messenger.xul	    chrome://tabscroll/content/tabscroll.xul
