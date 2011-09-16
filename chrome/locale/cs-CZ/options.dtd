@@ -1,8 +1,0 @@
-<!ENTITY options.title "Nastavení Tab Scroll">
-<!ENTITY options.scroll_mode "Způsob rolování">
-<!ENTITY options.scrolls_left.label "Rolování dolů posouvá doleva">
-<!ENTITY options.scrolls_left.accesskey "L">
-<!ENTITY options.scrolls_right.label "Rolování dolů posouvá doprava">
-<!ENTITY options.scrolls_right.accesskey "P">
-<!ENTITY options.scroll_wrap.label "Rolování přesouvá na opačný konec lišty">
-<!ENTITY options.scroll_wrap.accesskey "O">

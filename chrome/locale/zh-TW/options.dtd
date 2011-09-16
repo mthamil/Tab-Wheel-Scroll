@@ -1,8 +1,0 @@
-<!ENTITY options.title "頁籤捲動選項">
-<!ENTITY options.scroll_mode "捲動模式">
-<!ENTITY options.scrolls_left.label "向下捲動時左移">
-<!ENTITY options.scrolls_left.accesskey "L">
-<!ENTITY options.scrolls_right.label "向下捲動時右移">
-<!ENTITY options.scrolls_right.accesskey "R">
-<!ENTITY options.scroll_wrap.label "捲動至頁籤欄末時從頭循環">
-<!ENTITY options.scroll_wrap.accesskey "W">
