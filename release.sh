@@ -2,16 +2,16 @@
 # Builds a release package.
 
 # Extract the version.
-VERSION_LINE=$(awk '/<em\:version>.*<\/em\:version>/ { print $0 }' ./src/install.rdf)
-#echo $VERSION_LINE
-
-START=$(expr index "$VERSION_LINE" '>')
-VERSION=${VERSION_LINE:START}
+VERSION=$(awk '/<em\:version>.*<\/em\:version>/ { 
+    start = index($0, ">") + 1
+    version = substr($0, start)
+    end = index(version, "<")
+    version = substr(version, 0, end)
+    print version
+}' ./src/install.rdf)
 #echo $VERSION
-END=$(expr index "$VERSION" '<')-1
-VERSION=${VERSION:0:END}
-#echo $VERSION
 
+# Create the package.
 PACKAGE_NAME="tab_wheel_scroll-${VERSION}"
 #echo $PACKAGE_NAME
 ./package.sh $PACKAGE_NAME
