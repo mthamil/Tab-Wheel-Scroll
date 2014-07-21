@@ -2,16 +2,36 @@
 
 /* Begin Bootstrap Methods */
 function startup(data, reason) {
-	Components.utils.import('resource://gre/modules/Services.jsm');
-	//Components.utils.import('chrome://tabscroll-modules/content/tabscroll.jsm');
-
+    ['resource://gre/modules/Services.jsm',
+     'chrome://tabscroll-modules/content/TabWheelScroll.jsm',
+     'chrome://tabscroll-modules/content/WindowTracker.jsm',
+     'chrome://tabscroll-modules/content/DefaultPrefsLoader.jsm'].forEach(function(path) {
+        Components.utils.import(path);
+     });
+try {
+    setDefaultPrefs(data);
+    
+    WindowTracker.config.init = function(window) {
+        var tabWheelScroll = new TabWheelScroll();
+		tabWheelScroll.attach(window);
+        return tabWheelScroll;
+    };
+    
+    WindowTracker.config.disposal = function(tabWheelScroll) {
+        tabWheelScroll.dispose();
+    };
+    
 	// Configure all already open browser windows.
 	forEachOpenWindow(function(domWindow) {
-		WindowConfigurator.setUp(domWindow);
+		WindowTracker.setUp(domWindow);
 	});
 
 	// // Wait for any new browser windows to open
-	Services.wm.addListener(WindowConfigurator);
+	Services.wm.addListener(WindowTracker);
+}
+catch(ex) {
+    Services.console.logStringMessage(ex.toString());
+}
 }
 
 function shutdown(data, reason) {
@@ -23,13 +43,14 @@ function shutdown(data, reason) {
 
 	// Clean up all open browser windows.
 	forEachOpenWindow(function(domWindow) {
-		WindowConfigurator.tearDown(domWindow);
+		WindowTracker.tearDown(domWindow);
 	});
 
-	// // Stop listening for any new browser windows to open.
-	Services.wm.removeListener(WindowConfigurator);
-	
-	//Components.utils.unload('chrome://tabscroll-modules/content/tabscroll.jsm');
+	// Stop listening for any new browser windows to open.
+	Services.wm.removeListener(WindowTracker);
+	Components.utils.unload('chrome://tabscroll-modules/content/TabWheelScroll.jsm');
+    Components.utils.unload('chrome://tabscroll-modules/content/WindowTracker.jsm');
+    Components.utils.unload('chrome://tabscroll-modules/content/DefaultPrefsLoader.jsm');
 	Services.obs.notifyObservers(null, 'chrome-flush-caches', null);
 }
 
@@ -45,57 +66,3 @@ function forEachOpenWindow(action) {
 		action(windows.getNext().QueryInterface(Components.interfaces.nsIDOMWindow));
 	}
 }
-
-/*
- * Manages configuration and cleanup of browser windows.
- */
-var WindowConfigurator = {
-	perWindowTracker: {},
-
-	setUp: function(window) {
-		window.alert('setup');
-		//var tabWheelScroll = new TabWheelScroll();
-		//tabWheelScroll.attach(window);
-		//WindowConfigurator.perWindowTracker[window] = tabWheelScroll;
-	},
-
-	tearDown: function(window) {
-		window.alert('teardown');
-		//var tabWheelScroll = WindowConfigurator.perWindowTracker[window];
-		//if (tabWheelScroll) {
-		//	tabWheelScroll.dispose();
-		//	delete WindowConfigurator.perWindowTracker[window];
-		//}
-	},
-
-	/* nsIWindowMediatorListener handlers */
-	onOpenWindow: function(xulWindow) {
-        var domWindow = xulWindow.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
-                                 .getInterface(Components.interfaces.nsIDOMWindow);
-
-        console.log(domWindow.document.readyState);
-        domWindow.alert(domWindow.document.readyState);
-
-        // Wait for it to finish loading.
-        domWindow.addEventListener('load', function load(event) {
-            domWindow.removeEventListener('load', load, false);
-
-            // If this is a browser window then setup its UI.
-            if (domWindow.document.documentElement.getAttribute('windowtype') == 'navigator:browser') {
-                WindowConfigurator.setUp(domWindow);
-            }
-        }, false);
-	},
-
-	onCloseWindow: function(xulWindow) {
-		var domWindow = xulWindow.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
-								 .getInterface(Components.interfaces.nsIDOMWindow);
-								 
-        // If this is a browser window then clean up its UI.
-        if (domWindow.document.documentElement.getAttribute('windowtype') == 'navigator:browser') {
-            WindowConfigurator.tearDown(domWindow);
-        }
-	},
-
-	onWindowTitleChange: function(xulWindow, newTitle) { }
-};

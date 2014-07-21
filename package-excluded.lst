@@ -1,1 +1,3 @@
-./chrome/skin/tab-wheel-scroll.svg
+*.svg
+*.bak
+.git/*

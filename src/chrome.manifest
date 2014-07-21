@@ -1,6 +1,6 @@
-content    tabscroll-modules                         modules/
-content    tabscroll                                 chrome/content/
 skin       tabscroll     classic/1.0                 chrome/skin/
+content    tabscroll                                 chrome/content/
+content    tabscroll-modules                         modules/
 
 locale     tabscroll     en-US                       chrome/locale/en-US/
 locale     tabscroll     cs-CZ                       chrome/locale/cs-CZ/

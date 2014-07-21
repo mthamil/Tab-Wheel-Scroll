@@ -5,18 +5,17 @@
 
     <Description about="urn:mozilla:install-manifest">
 		<em:id>tabscroll@mthamil</em:id>
-        <em:version>201407XX.1</em:version>
+        <em:version>20140719</em:version>
 		<em:name>Tab Wheel Scroll</em:name>
         <em:description>Switch tabs by scrolling with the mouse wheel in the tab bar.</em:description>
         <em:creator>Matt Hamilton</em:creator>
+		<em:homepageURL>http://github.com/mthamil/Tab-Wheel-Scroll</em:homepageURL>
         <em:type>2</em:type>
 		<em:bootstrap>true</em:bootstrap>
 		<em:unpack>false</em:unpack>
-        <em:optionsURL>chrome://tabscroll/chrome/content/options.xul</em:optionsURL>
-		
-        <!-- Target Applications this extension can install into,
-             with minimum and maximum supported versions. -->
-             
+        <em:optionsURL>chrome://tabscroll/content/options.xul</em:optionsURL>
+		<em:optionsType>2</em:optionsType>
+
         <!-- Firefox -->
         <em:targetApplication>
             <Description>

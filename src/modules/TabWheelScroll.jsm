@@ -1,7 +1,7 @@
 'use strict';
-Components.utils.import('resource://gre/modules/Services.jsm');
 
 var EXPORTED_SYMBOLS = ['TabWheelScroll'];
+Components.utils.import('resource://gre/modules/Services.jsm');
 
 /*
  * Wrapper for tab containers.
@@ -80,10 +80,6 @@ var TabWheelScroll = function() {
         });
     };
 
-    self.detach = function() {
-        self.tabContainer.removeScrollListener();
-    };
-
     /*
      * Finds the appropriate tab container to use.
      */
@@ -119,6 +115,7 @@ var TabWheelScroll = function() {
      * Handles cleanup.
      */
     self.dispose = function() {
+        self.tabContainer.removeScrollListener();
         self.prefs.removeObserver("", self);
     };
 
