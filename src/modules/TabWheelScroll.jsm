@@ -96,19 +96,19 @@ var TabWheelScroll = function() {
     };
 
     self.getBrowserTabContainer = function(domWindow) {           
-        var tabBrowser = domWindow.document.getElementById('content');
-        if (tabBrowser == null) {
+        var tabs = domWindow.document.getElementById('content');
+        if (tabs == null) {
             return null;
         }
-        return tabBrowser.tabContainer;
+        return tabs.tabContainer;
     };
 
     self.getMailTabContainer = function(domWindow) {
-        var tabMail = domWindow.document.getElementById('tabmail');
-        if (tabMail == null) {
+        var tabs = domWindow.document.getElementById('tabcontainer');
+        if (tabs == null) {
             return null;
         }
-        return tabMail.tabContainer;
+        return tabs;
     };
 
     /*

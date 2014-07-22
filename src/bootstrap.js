@@ -8,7 +8,7 @@ function startup(data, reason) {
      'chrome://tabscroll-modules/content/DefaultPrefsLoader.jsm'].forEach(function(path) {
         Components.utils.import(path);
      });
-try {
+
     setDefaultPrefs(data);
     
     WindowTracker.config.init = function(window) {
@@ -22,16 +22,12 @@ try {
     };
     
 	// Configure all already open browser windows.
-	forEachOpenWindow(function(domWindow) {
+	WindowTracker.forEachOpenWindow(function(domWindow) {
 		WindowTracker.setUp(domWindow);
 	});
 
-	// // Wait for any new browser windows to open
+	// Wait for any new browser windows to open
 	Services.wm.addListener(WindowTracker);
-}
-catch(ex) {
-    Services.console.logStringMessage(ex.toString());
-}
 }
 
 function shutdown(data, reason) {
@@ -42,7 +38,7 @@ function shutdown(data, reason) {
 	}
 
 	// Clean up all open browser windows.
-	forEachOpenWindow(function(domWindow) {
+	WindowTracker.forEachOpenWindow(function(domWindow) {
 		WindowTracker.tearDown(domWindow);
 	});
 
@@ -58,11 +54,3 @@ function install(data, reason) { }
 
 function uninstall(data, reason) { }
 /* End Bootstrap Methods */
-
-
-function forEachOpenWindow(action) {
-	var windows = Services.wm.getEnumerator('navigator:browser');
-	while (windows.hasMoreElements()) {
-		action(windows.getNext().QueryInterface(Components.interfaces.nsIDOMWindow));
-	}
-}

@@ -3,8 +3,10 @@
 var EXPORTED_SYMBOLS = ['WindowTracker'];
 Components.utils.import('resource://gre/modules/Services.jsm');
 
-function isBrowserWindow(window) {
-    return window.document.documentElement.getAttribute('windowtype') == 'navigator:browser';
+function isApplicableWindow(window) {
+    return WindowTracker.config.windowTypes.some(function(windowType, index, items) {
+        return window.document.documentElement.getAttribute('windowtype') == windowType;
+    });
 }
 
 /*
@@ -16,6 +18,7 @@ var WindowTracker = {
     config: {
         init: null,
         disposal: null,
+        windowTypes: ['navigator:browser', 'mail:3pane']
     },
 
 	setUp: function(window) {
@@ -32,6 +35,15 @@ var WindowTracker = {
 			WindowTracker.perWindowTracker.delete(window);
 		}
 	},
+    
+    forEachOpenWindow: function(action) {
+        WindowTracker.config.windowTypes.forEach(function(windowType) {
+            var windows = Services.wm.getEnumerator(windowType);
+            while (windows.hasMoreElements()) {
+                action(windows.getNext().QueryInterface(Components.interfaces.nsIDOMWindow));
+            }
+         });
+    },
 
 	/* nsIWindowMediatorListener handlers */
 	onOpenWindow: function(xulWindow) {
@@ -43,7 +55,7 @@ var WindowTracker = {
             domWindow.removeEventListener('load', load, false);
 
             // If this is a browser window then setup its UI.
-            if (isBrowserWindow(domWindow)) {
+            if (isApplicableWindow(domWindow)) {
                 WindowTracker.setUp(domWindow);
             }
         }, false);
@@ -54,7 +66,7 @@ var WindowTracker = {
 								 .getInterface(Components.interfaces.nsIDOMWindow);
 								 
         // If this is a browser window then clean up its UI.
-        if (isBrowserWindow(domWindow)) {
+        if (isApplicableWindow(domWindow)) {
             WindowTracker.tearDown(domWindow);
         }
 	},
