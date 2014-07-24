@@ -5,7 +5,7 @@
 
     <Description about="urn:mozilla:install-manifest">
 		<em:id>tabscroll@mthamil</em:id>
-        <em:version>20140719</em:version>
+        <em:version>20140723</em:version>
 		<em:name>Tab Wheel Scroll</em:name>
         <em:description>Switch tabs by scrolling with the mouse wheel in the tab bar.</em:description>
         <em:creator>Matt Hamilton</em:creator>
