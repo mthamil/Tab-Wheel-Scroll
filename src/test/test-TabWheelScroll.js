@@ -24,7 +24,7 @@ exports["test new TabWheelScroll"] = function(assert) {
     assert.pass("Construction succeeded.");
 };
 
-exports["test TabWheelScroll wheel event"] = function(assert, done) {
+exports["test TabWheelScroll wheel scrolls up"] = function(assert, done) {
     // Arrange.
     const window = windows[0]
     const windowView = viewFor(window);
