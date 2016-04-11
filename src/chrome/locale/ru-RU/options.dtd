@@ -1,8 +1,0 @@
-<!ENTITY options.title "Настройки прокрутки вкладок">
-<!ENTITY options.scroll_mode "Режим прокрутки">
-<!ENTITY options.scrolls_left.label "При прокрутке вниз перемещаться влево">
-<!ENTITY options.scrolls_left.accesskey "л">
-<!ENTITY options.scrolls_right.label "При прокрутке вниз перемещаться вправо">
-<!ENTITY options.scrolls_right.accesskey "п">
-<!ENTITY options.scroll_wrap.label "При прокрутке перемещаться между концами панели вкладок">
-<!ENTITY options.scroll_wrap.accesskey "к">

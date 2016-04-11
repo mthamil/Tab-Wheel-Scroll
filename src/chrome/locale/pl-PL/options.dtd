@@ -1,8 +1,0 @@
-<!ENTITY options.title "Tab Scroll - opcje">
-<!ENTITY options.scroll_mode "Tryb przewijania">
-<!ENTITY options.scrolls_left.label "Przewijanie w dół przełącza karty w lewo">
-<!ENTITY options.scrolls_left.accesskey "L">
-<!ENTITY options.scrolls_right.label "Przewijanie w dół przełącza karty w prawo">
-<!ENTITY options.scrolls_right.accesskey "P">
-<!ENTITY options.scroll_wrap.label "Przeskakuj na drugi koniec paska na brzegowych kartach">
-<!ENTITY options.scroll_wrap.accesskey "S">

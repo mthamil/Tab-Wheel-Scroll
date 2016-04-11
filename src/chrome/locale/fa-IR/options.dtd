@@ -1,8 +1,0 @@
-<!ENTITY options.title "گزینه های پیمایش زبانه (Tab)">
-<!ENTITY options.scroll_mode "حالت پیمایش">
-<!ENTITY options.scrolls_left.label "پیمایش به پایین، به چپ حرکت می دهد">
-<!ENTITY options.scrolls_left.accesskey "L">
-<!ENTITY options.scrolls_right.label "پیمایش به پایین، به راست حرکت می دهد">
-<!ENTITY options.scrolls_right.accesskey "R">
-<!ENTITY options.scroll_wrap.label "پیمایش در ناحیه های انتهایی نوار ابزار خاتمه می یابد.">
-<!ENTITY options.scroll_wrap.accesskey "W">

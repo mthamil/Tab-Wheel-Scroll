@@ -1,8 +1,0 @@
-<!ENTITY options.title "Tab Scroll indstillinger">
-<!ENTITY options.scroll_mode "Rul måde">
-<!ENTITY options.scrolls_left.label "Rul ned flytter mod venstre">
-<!ENTITY options.scrolls_left.accesskey "v">
-<!ENTITY options.scrolls_right.label "Rul ned flytter mod højre">
-<!ENTITY options.scrolls_right.accesskey "h">
-<!ENTITY options.scroll_wrap.label "Rul starter forfra ved enderne af fanebladsbjælken">
-<!ENTITY options.scroll_wrap.accesskey "R">
