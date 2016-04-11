@@ -1,0 +1,127 @@
+{
+  "id": "tabscroll@mthamil",
+  "title": "Tab Wheel Scroll",
+  "name": "tabscroll",
+  "description": "Switch tabs by scrolling with the mouse wheel in the tab bar.",
+  "version": "20160410.1-alpha",
+  "homepage": "http://github.com/mthamil/Tab-Wheel-Scroll",
+  "author": "Matt Hamilton",
+  "locales": {
+    "cs-CZ" : {
+      "description": "Přepínejte panely rolováním kolečka myši na liště panelů."
+    },
+    "da-DK" : {
+      "description": "Skift faneblade ved at rulle med musehjulet i fanebladsbjælken"
+    },
+    "de-DE" : {
+      "description": "Tabwechsel mittels Mausscrollen in der Tableiste"
+    },
+    "en-US" : {
+      "description": "Switch tabs by scrolling with the mouse wheel in the tab bar."
+    },
+    "fa-IR" : {
+      "description": "تعویض زبانه ها با استفاده از پیمایش با چرخ موشواره در نوار زبانه"
+    },
+    "fr-FR" : {
+      "description": "Passez d'un onglet à l'autre avec la molette de la souris sur la barre d'onglets."
+    },
+    "he-IL" : {
+      "description": "החלף בין הלשוניות באמצעות גלילת גלגלת העכבר על גבי סרגל הלשוניות."
+    },
+    "ja-JP" : {
+      "description": "タブバーでマウスホイールをスクロールしてタブを切り替えます。"
+    },
+    "pl-PL" : {
+      "description": "Przełączaj karty przewijając kółkiem myszy na pasku kart."
+    },
+    "pt-BR" : {
+      "description": "Alterna abas rolando com o mouse na barra de abas."
+    },
+    "ru-RU" : {
+      "description": "Переключается между вкладками при прокрутке колесика мыши в панели вкладок"
+    },
+    "sk-SK" : {
+      "description": "Meniť karty skrolovaním mišou v lište záložiek."
+    },
+    "sr-RS" : {
+      "description": "Мења језичке окретањем точкића миша у траци са језичцима."
+    },
+    "tr-TR" : {
+      "description": "Sekme Çubuğundaki sekmeleri mouse tekerleğiyle değiştir."
+    },
+    "uk-UA" : {
+      "description": "Перемикання між вкладками при прокрутці коліщатка миші у панелі вкладок"
+    },
+    "zh-CN" : {
+      "description": "在标签栏上使用鼠标滚轮来切换标签页"
+    },
+    "zh-TW" : {
+      "description": "在分頁標籤區捲動滑鼠滾輪就可以切換瀏覽分頁"
+    }
+  },
+  "main": "index.js",
+  "permissions": {
+    "private-browsing": true
+  },
+  "preferences-branch": "extensions.tabscroll",
+  "preferences": [
+    {
+        "name": "downScrollsLeft",
+        "title": "Scroll Mode",
+        "description": "Determines which direction to move when scrolling.",
+        "type": "radio",
+        "value": true,
+        "options": [
+          {
+            "value": "true",
+            "label": "Scrolling down moves left"
+          },
+          {
+            "value": "false",
+            "label": "Scrolling down moves right"
+          }
+        ]
+    },
+    {
+       "name": "scrollWrap",
+       "title": "Scroll Wrap",
+       "description": "Whether scrolling wraps around the ends of the tab bar.",
+       "type": "bool",
+       "value": true
+    }
+  ],
+  "engines": {
+    "firefox": ">=38.0a1"
+  },
+  "license": "MPL-1.1",
+  "keywords": [
+    "jetpack",
+    "tabs",
+    "scrollwheel",
+    "scroll",
+    "wheel"
+  ],
+  "contributors": [
+    "Dorando: Original miniT extension"
+  ],
+  "translators": [
+    "Goofy (Babelzilla): Initial localization support and French translation",
+    "TLemur: Russian translation",
+    "drry: Japanese translation",
+    "Tsprajna: Traditional Chinese translation",
+    "Joergen: Danish translation",
+    "Waclaw Jacek: Polish translation",
+    "Alberto Eidh: Brazilian Portuguese translation",
+    "humbertosartini: Brazilian Portuguese translation",
+    "Team erweiterungen.de: German translation",
+    "Archaeopteryx: German translation",
+    "Yaron: Hebrew translation",
+    "BillKoochooloo: Persian translation",
+    "Holco: Slovak translation",
+    "xmoke: Simplified Chinese translation",
+    "synta10: Czech translation",
+    "Sappa: Ukrainian translation",
+    "DakSrbija: Serbian translation",
+    "muhengi: Turkish translation"
+  ]
+}
