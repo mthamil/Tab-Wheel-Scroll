@@ -17,4 +17,4 @@ before_script:
 script:
   - cd src
   - jpm xpi --verbose
-  - jpm test --verbose
+  - jpm test
