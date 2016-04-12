@@ -16,4 +16,5 @@ before_script:
   - npm install -g jpm
 script:
   - cd src
-  - jpm test
+  - jpm xpi --verbose
+  - jpm test --verbose
