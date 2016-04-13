@@ -10,11 +10,12 @@ env:
   global:
     - DISPLAY=:99.0
     - JPM_FIREFOX_BINARY=/usr/local/bin/firefox
+cache:
+  directories:
+    - node_modules
 before_install:
   - sh -e /etc/init.d/xvfb start
-before_script:
-  - npm install
 script:
-  - ../node_modules/.bin/gulp build
+  - node_modules/.bin/gulp build
   - cd dist
   - ../node_modules/.bin/jpm test
