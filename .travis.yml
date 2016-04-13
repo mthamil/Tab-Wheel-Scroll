@@ -13,8 +13,8 @@ env:
 before_install:
   - sh -e /etc/init.d/xvfb start
 before_script:
-  - npm install -g jpm
+  - npm install
 script:
-  - cd src
-  - jpm xpi --verbose
-  - jpm test
+  - ..\node_modules\.bin\gulp build
+  - cd dist
+  - ..\node_modules\.bin\jpm test
