@@ -1,0 +1,13 @@
+{
+  "name": "tab-wheel-scroll",
+  "description": "Switch tabs by scrolling with the mouse wheel in the tab bar.",
+  "version": "1.0.0",
+  "homepage": "http://github.com/mthamil/Tab-Wheel-Scroll",
+  "author": "Matt Hamilton",
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1",
+    "gulp-json-editor": "^2.2.1",
+    "jpm": "^1.0.7"
+  }
+}

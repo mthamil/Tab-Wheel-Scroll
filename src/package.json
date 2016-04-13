@@ -3,7 +3,7 @@
   "title": "Tab Wheel Scroll",
   "name": "tabscroll",
   "description": "Switch tabs by scrolling with the mouse wheel in the tab bar.",
-  "version": "20160410.1-alpha",
+  "version": "0.0.0",
   "homepage": "http://github.com/mthamil/Tab-Wheel-Scroll",
   "author": "Matt Hamilton",
   "locales": {
@@ -91,7 +91,9 @@
     }
   ],
   "engines": {
-    "firefox": ">=38.0a1"
+    "firefox": ">=38.0a1",
+    "thunderbird": ">=38.0",
+    "seamonkey": ">=2.40"
   },
   "license": "MPL-1.1",
   "keywords": [
