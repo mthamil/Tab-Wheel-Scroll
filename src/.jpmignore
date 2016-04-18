@@ -1,0 +1,6 @@
+.jpmignore
+*.svg
+*.bak
+.git/*
+chrome/*
+test/*

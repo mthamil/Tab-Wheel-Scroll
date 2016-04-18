@@ -1,2 +1,4 @@
 *.bak
 *.xpi
+dist
+node_modules

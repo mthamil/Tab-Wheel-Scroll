@@ -1,0 +1,26 @@
+sudo: false
+language: node_js
+node_js: stable
+addons:
+  firefox: latest
+env:
+  global:
+  - DISPLAY=:99.0
+  - JPM_FIREFOX_BINARY=/usr/local/bin/firefox
+cache:
+  directories:
+  - node_modules
+before_install:
+- sh -e /etc/init.d/xvfb start
+script:
+- node_modules/.bin/gulp build
+- cd dist
+- "../node_modules/.bin/jpm test"
+deploy:
+  provider: releases
+  api_key: ${GITHUB_TOKEN}
+  file_glob: true
+  file: ./dist/tabscroll@mthamil-*.xpi
+  skip_cleanup: true
+  on:
+    tags: true
