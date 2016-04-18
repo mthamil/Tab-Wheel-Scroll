@@ -18,7 +18,7 @@ gulp.task("clean", (done) => {
 gulp.task("version", () => {
     return gulp.src(`${config.in}package.json`, { base: `${config.in}` })
                .pipe(jeditor({
-                    "version": `${config.date.getFullYear()}${config.date.getMonth()}${config.date.getDate()}.${config.date.getHours()}`
+                    "version": `${config.date.getFullYear()}${config.date.getMonth()}${config.date.getDate()}.${config.date.getHours()}.0`
                 }))
                .pipe(gulp.dest(config.out));
 });
