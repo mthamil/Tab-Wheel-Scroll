@@ -11,5 +11,8 @@
     "gulp-babel": "^6.1.2",
     "gulp-json-editor": "^2.2.1",
     "jpm": "^1.0.7"
+  },
+  "babel": {
+    "presets": [ "es2015" ]
   }
 }
