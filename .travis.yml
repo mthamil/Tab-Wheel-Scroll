@@ -19,7 +19,7 @@ script:
 deploy:
   provider: releases
   api_key: ${GITHUB_TOKEN}
-  file: dist/tabscroll@mthamil-*.xpi
+  file: "${TRAVIS_BUILD_DIR}/dist/tabscroll@mthamil-*.xpi"
   skip_cleanup: true
   on:
     tags: true
