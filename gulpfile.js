@@ -2,12 +2,12 @@ const gulp = require("gulp");
 const del = require("del");
 const jeditor = require("gulp-json-editor");
 const babel = require("gulp-babel");
+const moment = require("moment");
 const exec = require('child_process').exec;
 
 const config = {
     in: "src/",
-    out: "dist/",
-    date: new Date()
+    out: "dist/"
 };
 
 gulp.task("clean", (done) => {
@@ -18,7 +18,7 @@ gulp.task("clean", (done) => {
 gulp.task("version", () => {
     return gulp.src(`${config.in}package.json`, { base: `${config.in}` })
                .pipe(jeditor({
-                    "version": `${config.date.getFullYear()}${config.date.getMonth()}${config.date.getDate()}.${config.date.getHours()}.0`
+                    "version": `${moment.utc().format("YYYYMMDD.H")}.0`
                 }))
                .pipe(gulp.dest(config.out));
 });

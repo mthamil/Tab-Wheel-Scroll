@@ -10,9 +10,12 @@
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-json-editor": "^2.2.1",
-    "jpm": "^1.0.7"
+    "jpm": "^1.0.7",
+    "moment": "^2.13.0"
   },
   "babel": {
-    "presets": [ "es2015" ]
+    "presets": [
+      "es2015"
+    ]
   }
 }
