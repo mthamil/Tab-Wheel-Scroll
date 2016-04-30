@@ -1,6 +1,6 @@
 "use strict";
 
-const windows = require("sdk/windows").browserWindows;
+const windows = require("./sdk/windows").allWindows;
 
 class WindowManager {
 

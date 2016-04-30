@@ -1,8 +1,8 @@
 "use strict";
 
-const tabUtils = require("sdk/tabs/utils");
+const tabUtils = require("./sdk/tabs/utils");
 const { viewFor } = require("sdk/view/core");
-const preferences  = require('sdk/simple-prefs').prefs;
+const preferences  = require("sdk/simple-prefs").prefs;
 
 class TabWheelScroll {
 	
