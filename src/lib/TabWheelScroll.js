@@ -1,7 +1,7 @@
 "use strict";
 
-const tabUtils = require("./sdk/tabs/utils");
-const { viewFor } = require("sdk/view/core");
+const tabUtils 	   = require("./sdk/tabs/utils");
+const { viewFor }  = require("sdk/view/core");
 const preferences  = require("sdk/simple-prefs").prefs;
 
 class TabWheelScroll {
@@ -10,7 +10,7 @@ class TabWheelScroll {
 		this.window = window;
 		const tabContainer = tabUtils.getTabContainer(viewFor(window));
 		
-		this.wheelHandler = (event) => this.handleScroll(event, window);
+		this.wheelHandler = event => this.handleScroll(event, window);
 		tabContainer.addEventListener("wheel", this.wheelHandler, false);
 	}
 	

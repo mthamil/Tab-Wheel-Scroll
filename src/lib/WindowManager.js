@@ -15,8 +15,8 @@ class WindowManager {
 		}
 		
 		// Listen for window events.
-		windows.on("open", (window) => this.initialize(window));
-		windows.on("close", (window) => {
+		windows.on("open", window => this.initialize(window));
+		windows.on("close", window => {
 			if (this.trackedWindows.has(window)) {
 				const tracked = this.trackedWindows.get(window);
 				this.teardown(tracked);
