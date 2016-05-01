@@ -1,52 +1,62 @@
 "use strict";
 
-const windowUtils = require('sdk/window/utils');
-const events = require("sdk/system/events");
-const { viewFor } = require('sdk/view/core');
+const windowUtils       = require('sdk/window/utils');
+const sysEvents         = require("sdk/system/events");
+const { emit, on, off } = require("sdk/event/core");
+const system            = require("sdk/system");
+const { viewFor }       = require('sdk/view/core');
+const { modelFor }      = require("sdk/model/core");
 
 const mailWindows = {
     [Symbol.iterator]: function() { return { next: function() { return { done: true }; } } },
     on: (type, handler) => {}
 };
 
-//const system = require("sdk/system");
+//if (["SeaMonkey", "Thunderbird"].includes(system.name)) {
+    const windowType = "mail:3pane";
+    function isMailWindow(window) {
+        return window.document.documentElement.getAttribute("windowtype") === windowType;
+    }
+    
+    class MailWindow {
+        constructor(chrome) {
+            this._chrome = chrome; 
+        }  
+    }
 
-// if (["SeaMonkey", "Thunderbird"].includes(system.name)) {
-
-//     const windows = [];
+    const windows = [];
+    mailWindows[Symbol.iterator] = () => windows[Symbol.iterator]();
     
-//     for (const existing of windowUtils.windows("mail:3pane")) {
-//         windows.push(new MailWindow(existing));
-//     }
+    for (let existing of windowUtils.windows(windowType)) {
+        windows.push(new MailWindow(existing));
+    }
     
-//     events.on("xul-window-registered", e => {
-//         const xulWindow = e.subject.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
-//                                    .getInterface(Components.interfaces.nsIDOMWindow);
-        
-//         windows.push(new MailWindow(xulWindow));
-//     });
+    // sysEvents.on("xul-window-registered", e => {
+    //     const xulWindow = e.subject.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
+    //                                .getInterface(Components.interfaces.nsIDOMWindow);
+    //     if (isMailWindow(xulWindow)) {
+    //         windows.push(new MailWindow(xulWindow));
+    //     }
+    // });
     
-//     events.on("dom-window-destroyed", e => {
-//         const xulWindow = e.subject;
-//         const index = windows.indexOf(xulWindow);
-//         if (index > -1) {
-//             windows.splice(index, 1);
-//         }
-//     });
+    // sysEvents.on("dom-window-destroyed", e => {
+    //     const xulWindow = e.subject;
+    //     const index = windows.findIndex(w => w._chrome === xulWindow);
+    //     if (index > -1) {
+    //         windows.splice(index, 1);
+    //     }
+    // });
     
-//     mailWindows[Symbol.iterator] = function* () {
-//         for (const window of windows) {
-//             yield window;
-//         }
-//     };
+    viewFor.define(MailWindow, window => window._chrome);
     
-//     class MailWindow {
-//         constructor(xulWindow) {
-//             this.xulWindow = xulWindow; 
-//         }  
-//     }
-    
-//     viewFor.implement(MailWindow, window => window.xulWindow);
-// }
+    modelFor.when(isMailWindow, view => {
+        for (let model of windows) {
+            if (viewFor(model) === view) {
+                return model;
+            }
+        }
+        return null;
+    });
+//}
 
 exports.mailWindows = mailWindows;
