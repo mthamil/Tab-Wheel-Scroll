@@ -1,7 +1,7 @@
 "use strict";
 
-const bWindows = require("sdk/windows").browserWindows;
-const mWindows = require("./windows/mail").mailWindows;
+import { browserWindows as bWindows} from "sdk/windows";
+import { mailWindows as mWindows }   from "./windows/mail";
 
 class ComposingIterator {
     constructor(...iterators) {
@@ -33,4 +33,4 @@ class WindowsAdapter {
     
 }
 
-exports.allWindows = new WindowsAdapter();
+export let allWindows = new WindowsAdapter();

@@ -1,6 +1,6 @@
 "use strict";
 
-const tabUtils = require("sdk/tabs/utils");
+import * as tabUtils from "sdk/tabs/utils";
 
 function getTabContainer(window) {
     let container = tabUtils.getTabContainer(window);
@@ -10,4 +10,4 @@ function getTabContainer(window) {
     return container;
 }
 
-exports.getTabContainer = getTabContainer;
+export { getTabContainer };

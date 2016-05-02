@@ -1,6 +1,6 @@
 "use strict";
 
-const windows = require("./sdk/windows").allWindows;
+import { allWindows as windows } from "./sdk/windows";
 
 class WindowManager {
 
@@ -38,4 +38,4 @@ class WindowManager {
 	}
 }
 
-exports.WindowManager = WindowManager;
+export { WindowManager };

@@ -1,12 +1,11 @@
 "use strict";
 
-const windowUtils        = require('sdk/window/utils');
-const { emit }           = require("sdk/event/core");
-const { EventTarget }    = require("sdk/event/target");
-const system             = require("sdk/system");
-const { viewFor }        = require('sdk/view/core');
-const { modelFor }       = require("sdk/model/core");
-const { WindowObserver } = require("./observer");
+import * as windowUtils from "sdk/window/utils";
+import { emit }         from "sdk/event/core";
+import { EventTarget }  from "sdk/event/target";
+import * as system      from "sdk/system";
+import { viewFor }      from "sdk/view/core";
+import { modelFor }     from "sdk/model/core";
 
 class MailWindow {
     constructor(chrome) {
@@ -30,6 +29,7 @@ class MailWindows extends EventTarget {
                 this.windows.push(new MailWindow(existing));
             }
         
+            const { WindowObserver } = require("./observer");
             this.windowObserver = new WindowObserver(
                 window => {
                     if (this.isMailWindow(window)) {
@@ -58,4 +58,4 @@ class MailWindows extends EventTarget {
     
 }
 
-exports.mailWindows = new MailWindows();
+export let mailWindows = new MailWindows();

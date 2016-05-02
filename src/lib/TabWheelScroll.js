@@ -1,8 +1,8 @@
 "use strict";
 
-const tabUtils 	   = require("./sdk/tabs/utils");
-const { viewFor }  = require("sdk/view/core");
-const preferences  = require("sdk/simple-prefs").prefs;
+import * as tabUtils    		from "./sdk/tabs/utils";
+import { viewFor }      		from "sdk/view/core";
+import { prefs as preferences } from "sdk/simple-prefs";
 
 class TabWheelScroll {
 	
@@ -50,4 +50,4 @@ class TabWheelScroll {
 	}
 }
 
-exports.TabWheelScroll = TabWheelScroll;
+export { TabWheelScroll };

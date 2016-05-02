@@ -1,7 +1,7 @@
 "use strict";
 
-const { Cc, Ci } = require('chrome');
-const unload     = require("sdk/system/unload");
+import { Cc, Ci }  from "chrome";
+import * as unload from "sdk/system/unload";
 
 class WindowObserver {
     constructor(onOpen, onClose) {
@@ -34,4 +34,4 @@ class WindowObserver {
     }
 }
     
-exports.WindowObserver = WindowObserver;
+export { WindowObserver };
