@@ -17,12 +17,11 @@ class WindowObserver {
     
     observe(subject, topic) {
         if (topic === "domwindowopened") {
-            let handler = null;
-            handler = e => {
+            const handler = e => {
                 this.onOpen(subject);
-                subject.removeEventListener(handler);
+                subject.removeEventListener("load", handler, false);
             };
-            subject.addEventListener("load", handler);
+            subject.addEventListener("load", handler, false);
         } else if (topic === "domwindowclosed") {
             this.onClose(subject);
         }
