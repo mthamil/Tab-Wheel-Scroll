@@ -30,19 +30,18 @@ class MailWindows extends EventTarget {
         }
         
         if (["SeaMonkey", "Thunderbird"].includes(system.name)) {
-            const self = this;
             this.windowObserver = new WindowObserver(
                 window => {
-                    if (self.isMailWindow(window)) {
-                        self.windows.push(new MailWindow(window));
-                        emit(self, "open", window);
+                    if (this.isMailWindow(window)) {
+                        this.windows.push(new MailWindow(window));
+                        emit(this, "open", window);
                     }
                 }, window => {
-                    if (self.isMailWindow(window)) {
-                        const index = self.windows.findIndex(w => w._chrome === window);
+                    if (this.isMailWindow(window)) {
+                        const index = this.windows.findIndex(w => w._chrome === window);
                         if (index > -1) {
-                            self.windows.splice(index, 1);
-                            emit(self, "close", window);
+                            this.windows.splice(index, 1);
+                            emit(this, "close", window);
                         }
                     }
                 }
