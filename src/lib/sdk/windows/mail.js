@@ -1,62 +1,61 @@
 "use strict";
 
-const windowUtils       = require('sdk/window/utils');
-const sysEvents         = require("sdk/system/events");
-const { emit, on, off } = require("sdk/event/core");
-const system            = require("sdk/system");
-const { viewFor }       = require('sdk/view/core');
-const { modelFor }      = require("sdk/model/core");
+const windowUtils        = require('sdk/window/utils');
+const { emit }           = require("sdk/event/core");
+const { EventTarget }    = require("sdk/event/target");
+const system             = require("sdk/system");
+const { viewFor }        = require('sdk/view/core');
+const { modelFor }       = require("sdk/model/core");
+const { WindowObserver } = require("./observer");
 
-const mailWindows = {
-    [Symbol.iterator]: function() { return { next: function() { return { done: true }; } } },
-    on: (type, handler) => {}
-};
+class MailWindow {
+    constructor(chrome) {
+        this._chrome = chrome; 
+    }  
+}
 
-//if (["SeaMonkey", "Thunderbird"].includes(system.name)) {
-    const windowType = "mail:3pane";
-    function isMailWindow(window) {
-        return window.document.documentElement.getAttribute("windowtype") === windowType;
-    }
+class MailWindows extends EventTarget {
     
-    class MailWindow {
-        constructor(chrome) {
-            this._chrome = chrome; 
-        }  
-    }
-
-    const windows = [];
-    mailWindows[Symbol.iterator] = () => windows[Symbol.iterator]();
-    
-    for (let existing of windowUtils.windows(windowType)) {
-        windows.push(new MailWindow(existing));
-    }
-    
-    // sysEvents.on("xul-window-registered", e => {
-    //     const xulWindow = e.subject.QueryInterface(Components.interfaces.nsIInterfaceRequestor)
-    //                                .getInterface(Components.interfaces.nsIDOMWindow);
-    //     if (isMailWindow(xulWindow)) {
-    //         windows.push(new MailWindow(xulWindow));
-    //     }
-    // });
-    
-    // sysEvents.on("dom-window-destroyed", e => {
-    //     const xulWindow = e.subject;
-    //     const index = windows.findIndex(w => w._chrome === xulWindow);
-    //     if (index > -1) {
-    //         windows.splice(index, 1);
-    //     }
-    // });
-    
-    viewFor.define(MailWindow, window => window._chrome);
-    
-    modelFor.when(isMailWindow, view => {
-        for (let model of windows) {
-            if (viewFor(model) === view) {
-                return model;
-            }
+    constructor() {
+        super();
+        this.windowType = "mail:3pane";
+        this.windows = [];
+        
+        // These are defined as properties instead of class methods due to apparent inheritance quirks.
+        this[Symbol.iterator] = () => this.windows[Symbol.iterator]();
+        this.isMailWindow = window => window.document.documentElement.getAttribute("windowtype") === this.windowType;
+        
+        for (let existing of windowUtils.windows(this.windowType)) {
+            this.windows.push(new MailWindow(existing));
         }
-        return null;
-    });
-//}
+        
+        if (["SeaMonkey", "Thunderbird"].includes(system.name)) {
+            const self = this;
+            this.windowObserver = new WindowObserver(
+                window => {
+                    if (self.isMailWindow(window)) {
+                        self.windows.push(new MailWindow(window));
+                        emit(self, "open", window);
+                    }
+                }, window => {
+                    if (self.isMailWindow(window)) {
+                        const index = self.windows.findIndex(w => w._chrome === window);
+                        if (index > -1) {
+                            self.windows.splice(index, 1);
+                            emit(self, "close", window);
+                        }
+                    }
+                }
+            );
+        }
+        
+        viewFor.define(MailWindow, window => window._chrome);
+    
+        modelFor.when(this.isMailWindow, view => {
+            const index = this.windows.findIndex(model => viewFor(model) === view);
+            return index > -1 ? this.windows[index] : null;
+        });
+    }
+}
 
-exports.mailWindows = mailWindows;
+exports.mailWindows = new MailWindows();
