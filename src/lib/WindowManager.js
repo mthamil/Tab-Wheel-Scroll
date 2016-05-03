@@ -11,23 +11,25 @@ class WindowManager {
 		
 		// Set up all already open browser windows.
 		for (let window of windows) {
-			this.initialize(window);
+			this.attach(window);
 		}
 		
 		// Listen for window events.
-		windows.on("open", window => this.initialize(window));
-		windows.on("close", window => {
-			if (this.trackedWindows.has(window)) {
-				const tracked = this.trackedWindows.get(window);
-				this.teardown(tracked);
-				this.trackedWindows.delete(window);
-			}
-		});
+		windows.on("open", window => this.attach(window));
+		windows.on("close", window => this.detach(window));
 	}
 	
-	initialize(window) {
+	attach(window) {
 		const tracked = this.setup(window);
 		this.trackedWindows.set(window, tracked);
+	}
+	
+	detach(window) {
+		if (this.trackedWindows.has(window)) {
+			const tracked = this.trackedWindows.get(window);
+			this.teardown(tracked);
+			this.trackedWindows.delete(window);
+		}
 	}
 	
 	dispose() {
