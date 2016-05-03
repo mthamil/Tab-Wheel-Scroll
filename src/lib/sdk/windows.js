@@ -31,6 +31,10 @@ class WindowsAdapter {
         mWindows.on(type, handler);
     }
     
+    off(type, handler) {
+        bWindows.off(type, handler);
+        mWindows.off(type, handler);
+    }
 }
 
 export let allWindows = new WindowsAdapter();
