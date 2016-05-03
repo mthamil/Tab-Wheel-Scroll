@@ -24,7 +24,7 @@ class MailWindows extends EventTarget {
         this[Symbol.iterator] = () => this.windows[Symbol.iterator]();
         this.isMailWindow = window => window.document.documentElement.getAttribute("windowtype") === this.windowType;
         
-        if (["SeaMonkey", "Thunderbird"].includes(system.name)) {
+        if (["SeaMonkey", "Thunderbird"].indexOf(system.name) > -1) {
             for (let existing of windowUtils.windows(this.windowType)) {
                 this.windows.push(new MailWindow(existing));
             }
@@ -33,15 +33,17 @@ class MailWindows extends EventTarget {
             this.windowObserver = new WindowObserver(
                 window => {
                     if (this.isMailWindow(window)) {
-                        this.windows.push(new MailWindow(window));
-                        emit(this, "open", window);
+                        const model = new MailWindow(window);
+                        this.windows.push(model);
+                        emit(this, "open", model);
                     }
                 }, window => {
                     if (this.isMailWindow(window)) {
                         const index = this.windows.findIndex(w => w._chrome === window);
                         if (index > -1) {
+                            const model = this.windows[index];
                             this.windows.splice(index, 1);
-                            emit(this, "close", window);
+                            emit(this, "close", model);
                         }
                     }
                 }
