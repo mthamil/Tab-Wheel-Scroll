@@ -3,11 +3,12 @@
 import * as tabUtils from "sdk/tabs/utils";
 
 function getTabContainer(window) {
-    let container = tabUtils.getTabContainer(window);
-    if (!container && window.GetTabMail) {
-        container = window.GetTabMail().tabContainer;
+    const tabMail = window.document.getElementById("tabmail");
+    if (tabMail) {
+        return tabMail.tabContainer;
+    } else {
+        return tabUtils.getTabContainer(window);
     }
-    return container;
 }
 
 export { getTabContainer };
