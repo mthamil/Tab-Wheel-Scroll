@@ -1,10 +1,10 @@
 "use strict";
 
-import { browserWindows as bWindows} from "sdk/windows";
-import { mailWindows as mWindows }   from "./windows/mail";
+import { browserWindows } from "sdk/windows";
+import { mailWindows }   from "./windows/mail";
 
 class ComposingIterator {
-    constructor(...iterators) {
+    constructor(iterators) {
         this.iterators = iterators;
         this.index = 0;
     }
@@ -22,19 +22,21 @@ class ComposingIterator {
 
 class WindowsAdapter {
 
+    constructor(...windows) {
+        this.windows = windows;
+    }
+
     [Symbol.iterator]() {
-        return new ComposingIterator(bWindows[Symbol.iterator](), mWindows[Symbol.iterator]());
+        return new ComposingIterator(this.windows.map(w => w[Symbol.iterator]()));
     }
     
     on(type, handler) {
-        bWindows.on(type, handler);
-        mWindows.on(type, handler);
+        this.windows.forEach(w => w.on(type, handler));
     }
     
     off(type, handler) {
-        bWindows.off(type, handler);
-        mWindows.off(type, handler);
+        this.windows.forEach(w => w.off(type, handler));
     }
 }
 
-export let allWindows = new WindowsAdapter();
+export let allWindows = new WindowsAdapter(browserWindows, mailWindows);
