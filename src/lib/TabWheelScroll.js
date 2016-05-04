@@ -1,8 +1,8 @@
 "use strict";
 
-import * as tabUtils    		from "./sdk/tabs/utils";
-import { viewFor }      		from "sdk/view/core";
-import { prefs as preferences } from "sdk/simple-prefs";
+import * as tabUtils from "./sdk/tabs/utils";
+import { viewFor }   from "sdk/view/core";
+import { prefs } 	 from "sdk/simple-prefs";
 
 class TabWheelScroll {
 	
@@ -15,8 +15,8 @@ class TabWheelScroll {
 	}
 	
 	handleScroll(event, window) {
-		let downScrollsLeft = preferences["downScrollsLeft"];
-		let scrollWrap = preferences["scrollWrap"];
+		let downScrollsLeft = prefs["downScrollsLeft"];
+		let scrollWrap = prefs["scrollWrap"];
 		const tabContainer = tabUtils.getTabContainer(viewFor(window));
 
 		if (event.deltaY < 0) {
