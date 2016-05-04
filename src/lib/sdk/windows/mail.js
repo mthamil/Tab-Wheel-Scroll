@@ -6,10 +6,13 @@ import { EventTarget }  from "sdk/event/target";
 import * as system      from "sdk/system";
 import { viewFor }      from "sdk/view/core";
 import { modelFor }     from "sdk/model/core";
+import { ns }           from "sdk/core/namespace";
+
+const mailNS = ns();
 
 class MailWindow {
     constructor(chrome) {
-        this._chrome = chrome; 
+        mailNS(this).chrome = chrome; 
     }  
 }
 
@@ -39,7 +42,7 @@ class MailWindows extends EventTarget {
                     }
                 }, window => {
                     if (this.isMailWindow(window)) {
-                        const index = this.windows.findIndex(w => w._chrome === window);
+                        const index = this.windows.findIndex(w => mailNS(w).chrome === window);
                         if (index > -1) {
                             const model = this.windows[index];
                             this.windows.splice(index, 1);
@@ -49,7 +52,7 @@ class MailWindows extends EventTarget {
                 }
             );
             
-            viewFor.define(MailWindow, window => window._chrome);
+            viewFor.define(MailWindow, window => mailNS(window).chrome);
     
             modelFor.when(this.isMailWindow, view => {
                 const index = this.windows.findIndex(model => viewFor(model) === view);
