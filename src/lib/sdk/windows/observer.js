@@ -28,7 +28,7 @@ class WindowObserver {
     }
     
     unload(reason) {
-        if (["uninstall", "disable", "shutdown", "upgrade", "downgrade"].includes(reason)) {
+        if (["uninstall", "disable", "shutdown", "upgrade", "downgrade"].indexOf(reason) > -1) {
             this.windowWatcher.unregisterNotification(this);
         }
     }
