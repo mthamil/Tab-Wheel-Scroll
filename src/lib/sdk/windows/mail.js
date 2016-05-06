@@ -1,12 +1,13 @@
 "use strict";
 
-import * as windowUtils from "sdk/window/utils";
-import { emit }         from "sdk/event/core";
-import { EventTarget }  from "sdk/event/target";
-import * as system      from "sdk/system";
-import { viewFor }      from "sdk/view/core";
-import { modelFor }     from "sdk/model/core";
-import { ns }           from "sdk/core/namespace";
+import * as windowUtils   from "sdk/window/utils";
+import { emit }           from "sdk/event/core";
+import { EventTarget }    from "sdk/event/target";
+import * as system        from "sdk/system";
+import { viewFor }        from "sdk/view/core";
+import { modelFor }       from "sdk/model/core";
+import { ns }             from "sdk/core/namespace";
+import { WindowObserver } from "./observer"
 
 const mailNS = ns();
 
@@ -25,14 +26,14 @@ class MailWindows extends EventTarget {
         
         // These are defined as properties instead of class methods due to apparent inheritance quirks.
         this[Symbol.iterator] = () => this.windows[Symbol.iterator]();
-        this.isMailWindow = window => window.document.documentElement.getAttribute("windowtype") === this.windowType;
-        
+
         if (["SeaMonkey", "Thunderbird"].indexOf(system.name) > -1) {
+            this.isMailWindow = window => window.document.documentElement.getAttribute("windowtype") === this.windowType;
+            
             for (let existing of windowUtils.windows(this.windowType)) {
                 this.windows.push(new MailWindow(existing));
             }
         
-            const { WindowObserver } = require("./observer");
             this.windowObserver = new WindowObserver(
                 window => {
                     if (this.isMailWindow(window)) {

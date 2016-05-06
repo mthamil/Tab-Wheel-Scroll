@@ -1,6 +1,6 @@
 "use strict";
 
-import { Cc, Ci }  from "chrome";
+import * as events from "sdk/system/events";
 import * as unload from "sdk/system/unload";
 
 class WindowObserver {
@@ -8,28 +8,29 @@ class WindowObserver {
         this.onOpen = onOpen;
         this.onClose = onClose;
         
-        this.windowWatcher = Cc['@mozilla.org/embedcomp/window-watcher;1'].
-                                getService(Ci.nsIWindowWatcher);
-        this.windowWatcher.registerNotification(this);
+        const unloadHandler = e =>  {
+            this.onClose(e.currentTarget);
+            e.currentTarget.removeEventListener("unload", unloadHandler, false);
+        };
+        
+        const loadHandler = e => {
+            this.onOpen(e.currentTarget);
+            e.currentTarget.addEventListener("unload", unloadHandler, false);
+            e.currentTarget.removeEventListener("load", loadHandler, false);
+        };
+        
+        this.windowHandler = e => {
+            e.subject.addEventListener("load", loadHandler, false);
+        };
+        
+        events.on("toplevel-window-ready", this.windowHandler);
         
         unload.ensure(this);
     }
     
-    observe(subject, topic) {
-        if (topic === "domwindowopened") {
-            const handler = e => {
-                this.onOpen(subject);
-                subject.removeEventListener("load", handler, false);
-            };
-            subject.addEventListener("load", handler, false);
-        } else if (topic === "domwindowclosed") {
-            this.onClose(subject);
-        }
-    }
-    
     unload(reason) {
         if (["uninstall", "disable", "shutdown", "upgrade", "downgrade"].indexOf(reason) > -1) {
-            this.windowWatcher.unregisterNotification(this);
+            events.off("toplevel-window-ready", this.windowHandler);
         }
     }
 }
