@@ -1,17 +1,16 @@
 "use strict";
 
-const self = require("sdk/self");
-const { WindowManager } = require("./lib/WindowManager");
-const { TabWheelScroll } = require("./lib/TabWheelScroll");
+import { WindowManager }  from "./lib/WindowManager";
+import { TabWheelScroll } from "./lib/TabWheelScroll";
 
 let windowManager = null;
 
-exports.main = function() {
+export function main() {
 	windowManager = new WindowManager(
 		(window) => new TabWheelScroll(window),
 		(tabWheelScroll) => tabWheelScroll.dispose());
 };
 
-exports.onUnload = function() {
+export function onUnload() {
 	windowManager.dispose();
-}
+};

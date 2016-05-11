@@ -1,8 +1,8 @@
 "use strict";
 
-const tabUtils = require("sdk/tabs/utils");
-const { viewFor } = require("sdk/view/core");
-const preferences  = require('sdk/simple-prefs').prefs;
+import * as tabUtils from "./sdk/tabs/utils";
+import { viewFor }   from "sdk/view/core";
+import { prefs } 	 from "sdk/simple-prefs";
 
 class TabWheelScroll {
 	
@@ -10,13 +10,13 @@ class TabWheelScroll {
 		this.window = window;
 		const tabContainer = tabUtils.getTabContainer(viewFor(window));
 		
-		this.wheelHandler = (event) => this.handleScroll(event, window);
-		tabContainer.addEventListener("wheel", this.wheelHandler, false);
+		this.wheelHandler = event => this.handleScroll(event, window);
+		tabContainer.addEventListener("wheel", this.wheelHandler, true);
 	}
 	
 	handleScroll(event, window) {
-		let downScrollsLeft = preferences["downScrollsLeft"];
-		let scrollWrap = preferences["scrollWrap"];
+		let downScrollsLeft = prefs["downScrollsLeft"];
+		let scrollWrap = prefs["scrollWrap"];
 		const tabContainer = tabUtils.getTabContainer(viewFor(window));
 
 		if (event.deltaY < 0) {
@@ -46,8 +46,8 @@ class TabWheelScroll {
 	
 	dispose() {
 		const tabContainer = tabUtils.getTabContainer(viewFor(this.window));
-		tabContainer.removeEventListener("wheel", this.wheelHandler, false);
+		tabContainer.removeEventListener("wheel", this.wheelHandler, true);
 	}
 }
 
-exports.TabWheelScroll = TabWheelScroll;
+export { TabWheelScroll };

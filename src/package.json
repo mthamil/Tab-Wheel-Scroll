@@ -92,7 +92,8 @@
   ],
   "engines": {
     "firefox": ">=38.0a1",
-    "seamonkey": ">=2.40"
+    "seamonkey": ">=2.40",
+    "thunderbird": ">=31.0"
   },
   "license": "MPL-1.1",
   "keywords": [
