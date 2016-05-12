@@ -8,6 +8,7 @@ import { viewFor }        from "sdk/view/core";
 import { modelFor }       from "sdk/model/core";
 import { ns }             from "sdk/core/namespace";
 import { WindowObserver } from "./observer"
+import { Extendable }     from "../core/heritage"
 
 const mailNS = ns();
 
@@ -17,19 +18,16 @@ class MailWindow {
     }  
 }
 
-class MailWindows extends EventTarget {
-    
+class MailWindows extends Extendable(EventTarget) {
+
     constructor() {
         super();
+        
         this.windowType = "mail:3pane";
         this.windows = [];
         
-        // These are defined as properties instead of class methods due to apparent inheritance quirks.
-        this[Symbol.iterator] = () => this.windows[Symbol.iterator]();
-
         if (["SeaMonkey", "Thunderbird"].indexOf(system.name) > -1) {
-            this.isMailWindow = window => window.document.documentElement.getAttribute("windowtype") === this.windowType;
-            
+
             for (let existing of windowUtils.windows(this.windowType)) {
                 this.windows.push(new MailWindow(existing));
             }
@@ -62,6 +60,13 @@ class MailWindows extends EventTarget {
         }
     }
     
+    [Symbol.iterator]() {
+        return this.windows[Symbol.iterator]();
+    }
+    
+    isMailWindow(window) {
+        return window.document.documentElement.getAttribute("windowtype") === this.windowType;
+    }
 }
 
 export let mailWindows = new MailWindows();
