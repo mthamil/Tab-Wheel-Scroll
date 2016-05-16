@@ -1,24 +1,25 @@
 "use strict";
 
-const windows = require("sdk/windows").browserWindows;
-const { WindowManager } = require("../lib/WindowManager");
+import { run }                       from "sdk/test";
+import { browserWindows as windows } from "sdk/windows";
+import { WindowManager }             from "../lib/WindowManager";
 
-exports["test new WindowManager"] = function(assert) {  
+exports["test new WindowManager"] = assert => {  
     // Act.
-    let underTest = new WindowManager(
-        (window) => {  window },
-        (tracked) => {});
+    const underTest = new WindowManager(
+        window => { window },
+        tracked => {});
     
     // Assert.
     assert.equal(underTest.trackedWindows.size, 1, "Existing window should have been initialized.");
     assert.ok(underTest.trackedWindows.has(windows[0]), "Existing window should be tracked.");
 };
 
-exports["test dispose WindowManager"] = function(assert) {  
+exports["test dispose WindowManager"] = assert => {  
     // Arrange.
-    let underTest = new WindowManager(
-        (window) => {  window },
-        (tracked) => {});
+    const underTest = new WindowManager(
+        window => { window },
+        tracked => {});
         
     // Act.
     underTest.dispose();
@@ -27,13 +28,13 @@ exports["test dispose WindowManager"] = function(assert) {
     assert.equal(underTest.trackedWindows.size, 0, "No windows should be tracked.");
 };
 
-exports["test WindowManager with new window opened"] = function(assert, done) {
+exports["test WindowManager with new window opened"] = (assert, done) => {
     // Arrange.
-    let underTest = new WindowManager(
-        (window) => {  window },
-        (tracked) => {});
+    const underTest = new WindowManager(
+        window => { window },
+        tracked => {});
     
-    windows.on("open", (window) => {
+    windows.on("open", window => {
         // Assert.
         assert.equal(underTest.trackedWindows.size, 2, "Both windows should be tracked.");
         assert.ok(underTest.trackedWindows.has(windows[0]), "Existing window should be tracked.");
@@ -47,16 +48,16 @@ exports["test WindowManager with new window opened"] = function(assert, done) {
     windows.open({ url: "about:blank" });
 };
 
-exports["test WindowManager with new window closed"] = function(assert, done) {
+exports["test WindowManager with new window closed"] = (assert, done) => {
     // Arrange.
     const originalWindow = windows[0];
     let newWindow = null;
     
-    let underTest = new WindowManager(
-        (window) => {  window },
-        (tracked) => {});
+    const underTest = new WindowManager(
+        window => { window },
+        tracked => {});
        
-    windows.on("close", (window) => {
+    windows.on("close", window => {
         if (window !== newWindow) { return; }
         
         // Assert.
@@ -68,11 +69,11 @@ exports["test WindowManager with new window closed"] = function(assert, done) {
 
     newWindow = windows.open({ 
         url: "about:blank",
-        onOpen: (window) => {
+        onOpen: window => {
             // Act.
             window.close();
         }
      });
 };
 
-require("sdk/test").run(exports);
+run(exports);
