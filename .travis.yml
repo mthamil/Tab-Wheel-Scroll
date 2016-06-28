@@ -13,9 +13,8 @@ cache:
 before_install:
 - sh -e /etc/init.d/xvfb start
 script:
-- node_modules/.bin/gulp build
-- cd dist
-- "../node_modules/.bin/jpm test"
+- npm run build
+- npm test
 deploy:
   provider: releases
   api_key: ${GITHUB_TOKEN}
