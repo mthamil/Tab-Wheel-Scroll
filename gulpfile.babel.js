@@ -10,26 +10,26 @@ const config = {
     out: "dist/"
 };
 
-export let clean = done => 
+export const clean = done => 
     del([`${config.out}*`], done);
 
-export let version = () =>
+export const version = () =>
     gulp.src(`${config.in}package.json`, { base: `${config.in}` })
         .pipe(jeditor({
             "version": `${moment.utc().format("YYYYMMDD.H")}.0`
         }))
         .pipe(gulp.dest(config.out));
 
-export let source = () =>
+export const source = () =>
     gulp.src([`${config.in}**/*.js`], { base: `${config.in}` })
         .pipe(babel())
         .pipe(gulp.dest(config.out));
 
-export let content = gulp.series(version, () =>
+export const content = gulp.series(version, () =>
     gulp.src([`${config.in}**`, `!${config.in}package.json`, `!${config.in}**/*.js`], { base: `${config.in}` })
         .pipe(gulp.dest(config.out)));
 
-export let build = gulp.series(clean, source, content, done => {
+export const build = gulp.series(clean, source, content, done => {
     exec(`${__dirname}/node_modules/.bin/jpm xpi`, { cwd: `${config.out}` }, (err, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
