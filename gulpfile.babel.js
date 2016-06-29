@@ -5,7 +5,7 @@ import babel    from "gulp-babel";
 import moment   from "moment";
 import utils    from "jpm/lib/utils";
 import xpi      from "jpm/lib/xpi";
-import { join } from "path";
+import path     from "path";
 
 const config = {
     in: "src/",
@@ -31,8 +31,9 @@ export const content = gulp.series(version, () =>
     gulp.src([`${config.in}**`, `!${config.in}package.json`, `!${config.in}**/*.js`], { base: `${config.in}` })
         .pipe(gulp.dest(config.out)));
 
+const jpmConfig = { addonDir: path.join(__dirname, config.out) };
 export const build = gulp.series(clean, source, content, () =>
-    utils.getManifest({ addonDir: join(__dirname, config.out) })
-         .then(manifest => xpi(manifest, { addonDir: join(__dirname, config.out) })));
+    utils.getManifest(jpmConfig)
+         .then(manifest => xpi(manifest, jpmConfig)));
 
 export default build;
