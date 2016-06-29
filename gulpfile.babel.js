@@ -3,7 +3,9 @@ import del      from "del";
 import jeditor  from "gulp-json-editor";
 import babel    from "gulp-babel";
 import moment   from "moment";
-import { exec } from "child_process";
+import utils    from "jpm/lib/utils";
+import xpi      from "jpm/lib/xpi";
+import { join } from "path";
 
 const config = {
     in: "src/",
@@ -29,12 +31,8 @@ export const content = gulp.series(version, () =>
     gulp.src([`${config.in}**`, `!${config.in}package.json`, `!${config.in}**/*.js`], { base: `${config.in}` })
         .pipe(gulp.dest(config.out)));
 
-export const build = gulp.series(clean, source, content, done => {
-    exec(`${__dirname}/node_modules/.bin/jpm xpi`, { cwd: `${config.out}` }, (err, stdout, stderr) => {
-        console.log(stdout);
-        console.log(stderr);
-        done(err);
-    });
-});
+export const build = gulp.series(clean, source, content, () =>
+    utils.getManifest({ addonDir: join(__dirname, config.out) })
+         .then(manifest => xpi(manifest, { addonDir: join(__dirname, config.out) })));
 
 export default build;
