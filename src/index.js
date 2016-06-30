@@ -9,8 +9,8 @@ export function main() {
 	windowManager = new WindowManager(
 		(window) => new TabWheelScroll(window),
 		(tabWheelScroll) => tabWheelScroll.dispose());
-};
+}
 
 export function onUnload() {
 	windowManager.dispose();
-};
+}
