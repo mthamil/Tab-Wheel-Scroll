@@ -1,7 +1,6 @@
 {
     // Configuring env and plugins: http://eslint.org/docs/user-guide/configuring
     // Adding rules: http://eslint.org/docs/rules/
-    // rule: 0=off, 1=warn, 2=error
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 6,
@@ -13,5 +12,13 @@
     "env": {
       "node": true,
       "es6": true
+    },
+    "rules": {
+        "curly": "error",
+        "eqeqeq": ["error", "always"],
+        "arrow-spacing": "error",
+        "no-var": "error",
+        "no-duplicate-imports": "error",
+        "no-path-concat": "error"
     }
 }
