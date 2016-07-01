@@ -1,6 +1,7 @@
 {
     // Configuring env and plugins: http://eslint.org/docs/user-guide/configuring
     // Adding rules: http://eslint.org/docs/rules/
+    "root": true,
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaVersion": 6,
