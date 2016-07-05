@@ -63,7 +63,7 @@
   "permissions": {
     "private-browsing": true
   },
-  "preferences-branch": "extensions.tabscroll",
+  "preferences-branch": "tabscroll",
   "preferences": [
     {
         "name": "downScrollsLeft",
