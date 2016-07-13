@@ -10,13 +10,13 @@ class TabWheelScroll {
 		this.window = window;
 		const tabContainer = tabUtils.getTabContainer(viewFor(window));
 		
-		this.wheelHandler = event => this.handleScroll(event, window);
+		this.wheelHandler = event => TabWheelScroll.handleScroll(event, window);
 		tabContainer.addEventListener("wheel", this.wheelHandler, true);
 	}
 	
-	handleScroll(event, window) {
-		let downScrollsLeft = prefs["downScrollsLeft"];
-		let scrollWrap = prefs["scrollWrap"];
+	static handleScroll(event, window) {
+		const downScrollsLeft = prefs["downScrollsLeft"];
+		const scrollWrap = prefs["scrollWrap"];
 		const tabContainer = tabUtils.getTabContainer(viewFor(window));
 
 		if (event.deltaY < 0) {

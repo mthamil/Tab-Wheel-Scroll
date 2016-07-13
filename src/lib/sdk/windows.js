@@ -39,4 +39,4 @@ class WindowsAdapter {
     }
 }
 
-export let allWindows = new WindowsAdapter(browserWindows, mailWindows);
+export const allWindows = new WindowsAdapter(browserWindows, mailWindows);

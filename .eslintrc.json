@@ -20,6 +20,7 @@
         "arrow-spacing": "error",
         "no-var": "error",
         "no-duplicate-imports": "error",
-        "no-path-concat": "error"
+        "no-path-concat": "error",
+        "prefer-const": "error"
     }
 }

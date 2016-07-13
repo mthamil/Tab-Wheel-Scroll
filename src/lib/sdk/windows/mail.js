@@ -28,7 +28,7 @@ class MailWindows extends Extendable(EventTarget) {
         
         if (["SeaMonkey", "Thunderbird"].indexOf(system.name) > -1) {
 
-            for (let existing of windowUtils.windows(this.windowType)) {
+            for (const existing of windowUtils.windows(this.windowType)) {
                 this.windows.push(new MailWindow(existing));
             }
         
@@ -69,4 +69,4 @@ class MailWindows extends Extendable(EventTarget) {
     }
 }
 
-export let mailWindows = new MailWindows();
+export const mailWindows = new MailWindows();

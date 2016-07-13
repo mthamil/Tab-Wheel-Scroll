@@ -10,7 +10,7 @@ class WindowManager {
 		this.trackedWindows = new Map();
 		
 		// Set up all already open browser windows.
-		for (let window of windows) {
+		for (const window of windows) {
 			this.attach(window);
 		}
 		
@@ -33,7 +33,7 @@ class WindowManager {
 	}
 	
 	dispose() {
-		for (let tracked of this.trackedWindows.values()) {
+		for (const tracked of this.trackedWindows.values()) {
 			this.teardown(tracked);
 		}
 		this.trackedWindows.clear();
