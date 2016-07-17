@@ -27,6 +27,7 @@
         "no-duplicate-imports": "error",
         "no-path-concat": "error",
         "prefer-const": "error",
-        "import/no-commonjs": "error"
+        "import/no-commonjs": "error",
+        "import/export": "error"
     }
 }
