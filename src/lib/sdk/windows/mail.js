@@ -1,12 +1,12 @@
 "use strict";
 
-import * as windowUtils   from "sdk/window/utils";
-import { emit }           from "sdk/event/core";
-import { EventTarget }    from "sdk/event/target";
-import * as system        from "sdk/system";
-import { viewFor }        from "sdk/view/core";
-import { modelFor }       from "sdk/model/core";
-import { ns }             from "sdk/core/namespace";
+import * as windowUtils   from "addon-sdk/lib/sdk/window/utils";
+import { emit }           from "addon-sdk/lib/sdk/event/core";
+import { EventTarget }    from "addon-sdk/lib/sdk/event/target";
+import * as system        from "addon-sdk/lib/sdk/system";
+import { viewFor }        from "addon-sdk/lib/sdk/view/core";
+import { modelFor }       from "addon-sdk/lib/sdk/model/core";
+import { ns }             from "addon-sdk/lib/sdk/core/namespace";
 import { WindowObserver } from "./observer"
 import { Extendable }     from "../core/heritage"
 
