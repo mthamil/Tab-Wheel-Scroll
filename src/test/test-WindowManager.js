@@ -1,5 +1,3 @@
-"use strict";
-
 import { run }                       from "addon-sdk/lib/sdk/test";
 import { browserWindows as windows } from "addon-sdk/lib/sdk/windows";
 import { WindowManager }             from "../lib/WindowManager";
