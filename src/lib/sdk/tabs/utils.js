@@ -1,5 +1,3 @@
-"use strict";
-
 import * as tabUtils from "addon-sdk/lib/sdk/tabs/utils";
 
 function getTabContainer(window) {

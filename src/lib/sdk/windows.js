@@ -1,5 +1,3 @@
-"use strict";
-
 import { browserWindows } from "addon-sdk/lib/sdk/windows";
 import { mailWindows }    from "./windows/mail";
 

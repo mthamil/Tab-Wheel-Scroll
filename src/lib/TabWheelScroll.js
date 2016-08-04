@@ -1,5 +1,3 @@
-"use strict";
-
 import * as tabUtils from "./sdk/tabs/utils";
 import { viewFor }   from "addon-sdk/lib/sdk/view/core";
 import { prefs } 	 from "addon-sdk/lib/sdk/simple-prefs";

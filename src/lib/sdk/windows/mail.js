@@ -1,5 +1,3 @@
-"use strict";
-
 import * as windowUtils   from "addon-sdk/lib/sdk/window/utils";
 import { emit }           from "addon-sdk/lib/sdk/event/core";
 import { EventTarget }    from "addon-sdk/lib/sdk/event/target";

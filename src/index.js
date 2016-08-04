@@ -1,5 +1,3 @@
-"use strict";
-
 import { WindowManager }  from "./lib/WindowManager";
 import { TabWheelScroll } from "./lib/TabWheelScroll";
 
