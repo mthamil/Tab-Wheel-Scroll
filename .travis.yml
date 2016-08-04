@@ -9,9 +9,8 @@ cache:
   directories:
   - node_modules
 before_install:
-- sudo add-apt-repository ppa:ubuntu-mozilla-daily/firefox-aurora -y
-- sudo apt-get update -q
-- sudo apt-get install firefox -y
+- "export FIREFOX_SOURCE_URL='https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US'""
+- wget -O /tmp/firefox-aurora-latest.tar.bz2 $FIREFOX_SOURCE_URL
 - sh -e /etc/init.d/xvfb start
 script:
 - npm run lint
