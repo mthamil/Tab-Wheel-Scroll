@@ -1,7 +1,5 @@
-"use strict";
-
-import * as events from "sdk/system/events";
-import * as unload from "sdk/system/unload";
+import * as events from "addon-sdk/lib/sdk/system/events";
+import * as unload from "addon-sdk/lib/sdk/system/unload";
 
 class WindowObserver {
     constructor(onOpen, onClose) {

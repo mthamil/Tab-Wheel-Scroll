@@ -1,7 +1,5 @@
-"use strict";
-
-import { browserWindows } from "sdk/windows";
-import { mailWindows }   from "./windows/mail";
+import { browserWindows } from "addon-sdk/lib/sdk/windows";
+import { mailWindows }    from "./windows/mail";
 
 class ComposingIterator {
     constructor(iterators) {

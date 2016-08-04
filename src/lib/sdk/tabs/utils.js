@@ -1,6 +1,4 @@
-"use strict";
-
-import * as tabUtils from "sdk/tabs/utils";
+import * as tabUtils from "addon-sdk/lib/sdk/tabs/utils";
 
 function getTabContainer(window) {
     const tabMail = window.document.getElementById("tabmail");

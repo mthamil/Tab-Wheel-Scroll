@@ -1,10 +1,8 @@
-"use strict";
+import { run }            from "addon-sdk/lib/sdk/test";
+import { browserWindows } from "addon-sdk/lib/sdk/windows";
+import { WindowObserver } from "../lib/sdk/windows/observer";
 
-import { run }            from "sdk/test";
-import { browserWindows } from "sdk/windows";
-import { WindowObserver } from "../../../lib/sdk/windows/observer";
-
-exports["test load event"] = (assert, done) => {
+export function test_load_event(assert, done) {
     
     // Arrange.
     let wasLoaded = false;
@@ -27,9 +25,9 @@ exports["test load event"] = (assert, done) => {
         
         done();
      });
-};
+}
 
-exports["test unload event"] = (assert, done) => {
+export function test_unload_event(assert, done) {
     
     // Arrange.
     let wasUnloaded = false;
@@ -49,6 +47,6 @@ exports["test unload event"] = (assert, done) => {
         url: "about:blank",
         onOpen: w => w.close()
     });
-};
+}
 
 run(exports);

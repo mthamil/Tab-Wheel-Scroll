@@ -1,9 +1,7 @@
-"use strict";
-
-import { run }                       from "sdk/test";
-import { browserWindows as windows } from "sdk/windows";
-import * as tabUtils                 from "sdk/tabs/utils";
-import { viewFor }                   from "sdk/view/core";
+import { run }                       from "addon-sdk/lib/sdk/test";
+import { browserWindows as windows } from "addon-sdk/lib/sdk/windows";
+import * as tabUtils                 from "addon-sdk/lib/sdk/tabs/utils";
+import { viewFor }                   from "addon-sdk/lib/sdk/view/core";
 import { TabWheelScroll }            from "../lib/TabWheelScroll";
 
 function addOneTimeListener(target, name, handler, useCapture) {
@@ -14,7 +12,7 @@ function addOneTimeListener(target, name, handler, useCapture) {
     target.addEventListener(name, wrappingHandler, useCapture);
 }
 
-exports["test new TabWheelScroll"] = assert => {
+export function test_new_TabWheelScroll(assert) {
     // Arrange.
     const window = windows[0]
     
@@ -23,9 +21,9 @@ exports["test new TabWheelScroll"] = assert => {
     
     // Assert.
     assert.pass("Construction succeeded.");
-};
+}
 
-exports["test TabWheelScroll wheel scrolls up"] = (assert, done) => {
+export function test_TabWheelScroll_wheel_scrolls_up(assert, done) {
     // Arrange.
     const window = windows[0]
     const windowView = viewFor(window);
@@ -47,6 +45,6 @@ exports["test TabWheelScroll wheel scrolls up"] = (assert, done) => {
     
     // Act.
     tabContainer.dispatchEvent(new windowView.WheelEvent("wheel", { deltaY: -3 }));
-};
+}
 
 run(exports);
