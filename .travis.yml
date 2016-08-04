@@ -9,7 +9,7 @@ cache:
   directories:
   - node_modules
 before_install:
-- "export FIREFOX_SOURCE_URL='https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US'""
+- export FIREFOX_SOURCE_URL='https://download.mozilla.org/?product=firefox-aurora-latest-ssl&os=linux64&lang=en-US'
 - wget -O /tmp/firefox-aurora-latest.tar.bz2 $FIREFOX_SOURCE_URL
 - sh -e /etc/init.d/xvfb start
 script:
