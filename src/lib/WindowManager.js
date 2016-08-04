@@ -1,5 +1,3 @@
-"use strict";
-
 import { allWindows as windows } from "./sdk/windows";
 
 class WindowManager {

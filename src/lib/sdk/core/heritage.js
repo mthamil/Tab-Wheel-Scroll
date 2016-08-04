@@ -1,5 +1,3 @@
-"use strict";
-
 /**
  * Helper function based on Babel.js plugin 'babel-plugin-transform-builtin-extend'
  * which fixes inheritance interop between classes created with the add-on sdk's Class() 
