@@ -1,11 +1,11 @@
-import gulp     from "gulp";
-import del      from "del";
-import jeditor  from "gulp-json-editor";
-import babel    from "gulp-babel";
-import moment   from "moment";
-import utils    from "jpm/lib/utils";
-import xpi      from "jpm/lib/xpi";
-import path     from "path";
+import gulp    from "gulp";
+import del     from "del";
+import jeditor from "gulp-json-editor";
+import babel   from "gulp-babel";
+import moment  from "moment";
+import utils   from "jpm/lib/utils";
+import xpi     from "jpm/lib/xpi";
+import path    from "path";
 
 const config = {
     in: "src/",
