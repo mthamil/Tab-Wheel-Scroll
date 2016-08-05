@@ -61,7 +61,8 @@
   },
   "main": "index.js",
   "permissions": {
-    "private-browsing": true
+    "private-browsing": true,
+    "multiprocess": true
   },
   "preferences-branch": "extensions.tabscroll",
   "preferences": [
