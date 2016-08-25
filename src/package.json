@@ -105,7 +105,14 @@
     "wheel"
   ],
   "contributors": [
-    "Dorando: Original miniT extension"
+    {
+      "name": "Dorando",
+      "url": "http://mozilla.dorando.at/readme.html"
+    },
+    {
+      "name": "Stoyan Dimitrov",
+      "url": "https://github.com/StoyanDimitrov"
+    }
   ],
   "translators": [
     "Goofy (Babelzilla): Initial localization support and French translation",
