@@ -18,7 +18,7 @@ export const clean = done =>
 export const version = () =>
     gulp.src(`${config.in}package.json`, { base: `${config.in}` })
         .pipe(jeditor({
-            "version": `${moment.utc().format("YYYYMMDD.H.mss")}`
+            "version": `${moment.utc().format("YYYYMMDD.H.m")}`
         }))
         .pipe(gulp.dest(config.out));
 
