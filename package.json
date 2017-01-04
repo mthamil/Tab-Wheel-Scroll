@@ -16,7 +16,7 @@
     "browser": "jpm --addon-dir ./dist post"
   },
   "dependencies": {
-    "addon-sdk": "github:mozilla/addon-sdk"
+    "addon-sdk": "github:mthamil/addon-sdk"
   },
   "devDependencies": {
     "babel-plugin-import-rename": "^1.0.1",
