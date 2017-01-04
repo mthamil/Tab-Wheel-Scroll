@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "author": "Matt Hamilton",
   "homepage": "http://github.com/mthamil/Tab-Wheel-Scroll",
-    "repository": {
+  "repository": {
     "type": "git",
     "url": "https://github.com/mthamil/Tab-Wheel-Scroll.git"
   },
@@ -28,6 +28,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-cli": "^1.2.1",
     "gulp-json-editor": "^2.2.1",
+    "gulp-util": "^3.0.8",
     "jpm": "^1.0.7",
     "moment": "^2.13.0"
   }

@@ -1,4 +1,5 @@
 import gulp    from "gulp";
+import gutil   from "gulp-util";
 import del     from "del";
 import jeditor from "gulp-json-editor";
 import babel   from "gulp-babel";
@@ -34,6 +35,7 @@ export const content = gulp.series(version, () =>
 const jpmConfig = { addonDir: path.join(__dirname, config.out) };
 export const build = gulp.series(clean, source, content, () =>
     utils.getManifest(jpmConfig)
-         .then(manifest => xpi(manifest, jpmConfig)));
+         .then(manifest => xpi(manifest, jpmConfig))
+         .then(packagePath => gutil.log("Built addon package", packagePath)));
 
 export default build;
