@@ -35,6 +35,7 @@ export const content = gulp.series(version, () =>
 const jpmConfig = { addonDir: path.join(__dirname, config.out) };
 export const build = gulp.series(clean, source, content, () =>
     utils.getManifest(jpmConfig)
+         .then(manifest => { manifest.name = null; return manifest; })  // hack, clear name to produce desired xpi name
          .then(manifest => xpi(manifest, jpmConfig))
          .then(packagePath => gutil.log("Built addon package", packagePath)));
 
