@@ -21,7 +21,7 @@ deploy:
   provider: releases
   api_key: ${GITHUB_TOKEN}
   file_glob: true
-  file: "${TRAVIS_BUILD_DIR}/dist/tabscroll@mthamil-*.xpi"
+  file: "${TRAVIS_BUILD_DIR}/dist/tabscroll*.xpi"
   skip_cleanup: true
   on:
     tags: true
